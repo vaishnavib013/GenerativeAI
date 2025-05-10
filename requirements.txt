@@ -1,0 +1,7 @@
+Flask
+requests
+pdfkit
+openai
+gunicorn
+fpdf
+beautifulsoup4

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>CorpIntelAI Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <h1>Welcome to CorpIntelAI</h1>
+    <form method="POST" action="/analyze">
+        <label>Enter Company Name</label>
+        <input type="text" name="company" required>
+        <button type="submit">Analyze</button>
+    </form>
+
+    {% if swot %}
+        <h2>SWOT Analysis for {{ company }}</h2>
+        <pre>{{ swot }}</pre>
+
+        <form method="GET" action="/export/pdf">
+            <input type="hidden" name="company" value="{{ company }}">
+            <input type="hidden" name="swot" value="{{ swot }}">
+            <button type="submit">Download PDF</button>
+        </form>
+    {% endif %}
+
+    {% if scraped_data %}
+        <h3>Company Info Fetched:</h3>
+        <p>{{ scraped_data }}</p>
+    {% endif %}
+</body>
+</html>
